@@ -29,22 +29,18 @@ window.OYUN_AYAR = {
   // Kelimeler. İstediğin kategoriyi ekle/sil. Türkçe karakter şart değil;
   // chat "kokorec" yazsa da "KOKOREÇ" sayılır.
   kategoriler: [
-    { ad: "Yemek", kelimeler: ["Lahmacun", "Kokoreç", "Menemen", "Mantı", "Baklava", "İskender", "Kumpir",
-      "Künefe", "Tantuni", "Gözleme", "Midye dolma", "Çiğ köfte", "Kuru fasulye", "Kazandibi", "Börek"] },
-    { ad: "İstanbul", kelimeler: ["Kadıköy", "Beşiktaş", "Üsküdar", "Karaköy", "Eminönü", "Galata", "Balat",
-      "Ortaköy", "Kız Kulesi", "Kapalıçarşı", "Bebek", "Sultanahmet", "Moda", "Cihangir"] },
-    { ad: "Şehir", kelimeler: ["Trabzon", "Eskişehir", "Gaziantep", "Antalya", "Erzurum", "Mardin", "Bursa",
-      "İzmir", "Kastamonu", "Diyarbakır", "Çanakkale", "Hatay"] },
-    { ad: "Hayvan", kelimeler: ["Martı", "Sincap", "Kirpi", "Flamingo", "Penguen", "Zürafa", "Timsah",
-      "Kaplumbağa", "Ahtapot", "Yunus", "Baykuş"] },
-    { ad: "Meslek", kelimeler: ["Taksici", "Berber", "Kasap", "Simitçi", "İtfaiyeci", "Astronot", "Kuaför",
-      "Garson", "Kurye", "Dalgıç"] },
-    { ad: "Yayın", kelimeler: ["Takipçi", "Moderatör", "Powerbank", "Kamera", "Bağış", "Abone", "Mikrofon",
-      "Selfie çubuğu", "Bağlantı"] },
-    { ad: "Teknoloji", kelimeler: ["Bilgisayar", "Klavye", "Kulaklık", "Hoparlör", "Tablet", "Akıllı saat", "Robot",
-      "Drone", "Yapay zeka", "İşlemci", "Ekran kartı", "Anakart", "Modem", "Bluetooth", "Uygulama", "Yazılım",
-      "Şifre", "Oyun konsolu", "Joystick", "Projeksiyon", "Elektrikli araba", "Sanal gerçeklik", "Bulut", "Emoji",
-      "Hashtag", "Algoritma", "Siber güvenlik", "Şarj kablosu", "Monitör", "Web sitesi"] },
+    { ad: "Purna Categories", kelimeler: [
+      "Amateur", "Milf", "Stepmom", "Stepsister", "Blonde", "Brunette", "Redhead", "Asian", "Latina",
+      "Ebony", "Euro", "Russian", "Japanese", "French", "Italian", "Brazilian", "Indian", "Lesbian",
+      "Threesome", "Group", "Orgy", "Swingers", "Cougar", "Mature", "BBW", "Petite", "Curvy", "Busty",
+      "Natural", "Tattooed", "Pierced", "Goth", "Cosplay", "Hentai", "Anime", "VR", "POV", "Massage",
+      "Secretary", "Nurse", "Maid", "Teacher", "Cheerleader", "Police", "Fitness", "Yoga", "Gym",
+      "lingerie", "Stockings", "High heels", "Latex", "Leather", "Fetish", "BDSM", "Bondage", "Femdom",
+      "Roleplay", "Public", "Outdoor", "Beach", "Pool", "Shower", "Casting", "Hidden cam", "Webcam",
+      "Solo", "Compilation", "Romantic", "Hardcore", "Softcore", "Vintage", "Classic", "Parody", "ASMR",
+      "Anal", "Oral", "Interracial", "Bisexual", "Transgender", "Cuckold", "Voyeur", "Exhibitionist",
+      "Striptease", "Oiled", "Squirt", "Creampie", "Gangbang", "Double penetration", "Foot fetish"
+    ] },
   ],
 
   // Skorların ve kullanılan kelimelerin bu bilgisayarda saklandığı ad. Her yayıncının kopyasında farklı olmalı.
