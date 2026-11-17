@@ -72,6 +72,10 @@
   h3 .hedef b { color:#fff; }
 
   /* Şampiyon ekranı */
+  #bildirim { position:absolute; top:2rem; left:50%; z-index:5; transform:translate(-50%, -12rem); white-space:nowrap;
+    background:#fff; color:#111; font-weight:800; font-size:3.4rem; padding:1.2rem 3rem; border-radius:10rem;
+    box-shadow:0 1rem 3rem rgba(0,0,0,.4); transition:transform .35s ease; }
+  #bildirim.acik { transform:translate(-50%, 0); }
   #sampiyon { position:absolute; inset:0; z-index:4; display:none; flex-direction:column; align-items:center; justify-content:center;
     text-align:center; padding:4rem; background:radial-gradient(ellipse at top, rgba(83,252,24,.22), transparent 65%), rgba(10,12,14,.97); }
   #sampiyon.acik { display:flex; animation:pop .6s ease-out; }
@@ -130,6 +134,7 @@
   </header>
 
   <div id="sampiyon"></div>
+  <div id="bildirim"></div>
   <div class="govde">
     <div class="sol">
       <div id="kelime"></div>
@@ -176,7 +181,8 @@
   }
 
   // ---------- Skorlar (bu bilgisayarda saklanır; ?sifirla=1 ile temizlenir) ----------
-  const ANAHTAR = "kelimeAvi.skor.v1";
+  // Test modunun sahte puanları gerçek skor tablosuna karışmasın diye ayrı yerde tutulur
+  const ANAHTAR = TEST ? "kelimeAvi.skor.test" : "kelimeAvi.skor.v1";
   let skor = {};
   try { if (q.has("sifirla")) localStorage.removeItem(ANAHTAR); skor = JSON.parse(localStorage.getItem(ANAHTAR) || "{}"); } catch (e) { skor = {}; }
   const skorKaydet = () => { try { localStorage.setItem(ANAHTAR, JSON.stringify(skor)); } catch (e) {} };
@@ -362,7 +368,30 @@
     while (ul.children.length > 3) ul.lastChild.remove();
   }
 
-  function mesajGeldi(kullanici, metin, renk) {
+  // !sifirla: sadece kanal sahibi (ve ayarlar.js'teki yetkililer) skorları sıfırlayabilir
+  function yetkiliMi(kullanici, rozetler) {
+    const ad = String(kullanici).toLowerCase();
+    if (A.kanal && ad === A.kanal.toLowerCase()) return true;
+    if ((rozetler || []).includes("broadcaster")) return true;
+    if (A.modlarSifirlayabilir !== false && (rozetler || []).includes("moderator")) return true;
+    return (A.yetkililer || []).some(y => String(y).toLowerCase() === ad);
+  }
+
+  function bildir(yazi) {
+    const b = $("#bildirim");
+    b.textContent = yazi;
+    b.classList.remove("acik"); void b.offsetWidth; b.classList.add("acik");
+    clearTimeout(bildir.z);
+    bildir.z = setTimeout(() => b.classList.remove("acik"), 4000);
+  }
+
+  function mesajGeldi(kullanici, metin, renk, rozetler) {
+    if (typeof metin === "string" && /^\s*!/.test(metin) && sade(metin) === "sifirla") {
+      if (!yetkiliMi(kullanici, rozetler)) return;
+      skor = {}; skorKaydet(); skorCiz();
+      bildir(`Skorlar sıfırlandı (${kullanici})`);
+      return;
+    }
     if (!tur || tur.bitti) return;
     metin = metin.replace(/\[emote:[^\]]*\]/g, " ").trim();
     if (!metin || metin.length > 60) return;

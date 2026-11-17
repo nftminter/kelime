@@ -1,5 +1,5 @@
 // Kick chat okuyucu (sadece okur, giriş gerekmez).
-// Kullanım: KickChat.baglan({ kanal, chatroomId, mesaj: (kullanici, metin, renk) => {}, durum: (bagli, yazi) => {} })
+// Kullanım: KickChat.baglan({ kanal, chatroomId, mesaj: (kullanici, metin, renk, rozetler) => {}, durum: (bagli, yazi) => {} })
 window.KickChat = (() => {
   // Kick anahtarı zaman zaman değiştiriyor: önce güncelini ister, alamazsa bilinen son anahtarı kullanır.
   const YEDEK_ANAHTAR = { key: "34bf7a0ff419a2a775b9", cluster: "us2" };
@@ -51,7 +51,8 @@ window.KickChat = (() => {
           sayac++;
           durum(true, `${etiket} · ${sayac} mesaj`);
           const renk = s.identity && s.identity.color; // kişinin Kick chat'teki nick rengi
-          if (typeof d.content === "string") mesaj(s.username || String(s.id || "?"), d.content, renk);
+          const rozetler = (s.identity && s.identity.badges || []).map(b => b && b.type).filter(Boolean); // ör. "broadcaster", "moderator"
+          if (typeof d.content === "string") mesaj(s.username || String(s.id || "?"), d.content, renk, rozetler);
         }
       };
       ws.onclose = () => { durum(false, "Chat koptu, yeniden bağlanıyor…"); setTimeout(ac, 3000); };

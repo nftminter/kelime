@@ -19,6 +19,13 @@ window.OYUN_AYAR = {
   // Şampiyon ekranı kaç saniye kalsın
   sampiyonSuresi: 15,
 
+  // Chat'e "!sifirla" yazınca skorları kim sıfırlayabilir:
+  // kanal sahibi her zaman; modlar da (Kick'teki mod rozetine bakılır). Modlar yapmasın istersen false yap.
+  modlarSifirlayabilir: true,
+
+  // Mod olmayan ama sıfırlayabilsin istediğin kişiler (Kick adları). Örnek: ["arkadasim_ali"]
+  yetkililer: [],
+
   // Kelimeler. İstediğin kategoriyi ekle/sil. Türkçe karakter şart değil;
   // chat "kokorec" yazsa da "KOKOREÇ" sayılır.
   kategoriler: [
