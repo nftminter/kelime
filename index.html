@@ -6,62 +6,65 @@
 <style>
   :root { --yesil:#53fc18; --turuncu:#ffb020; --kart:rgba(14,16,19,.9); --zemin:#262c32; --soluk:#9aa4ad; }
   * { box-sizing:border-box; margin:0; padding:0; }
+  /* Ölçek birimi: pencerenin genişliği ya da yüksekliği, hangisi darsa ona göre.
+     Böylece kart OBS'te (600x800 önerilir) de geniş masaüstü penceresinde de ekrana sığar. */
+  html { font-size:min(1vw, .74vh); }
   html, body { width:100%; height:100%; overflow:hidden; background:transparent;
     font-family:"Segoe UI", Inter, Arial, sans-serif; color:#fff; }
+  body { font-size:3.6rem; }
 
-  /* Sayfa genişliğine göre ölçeklenir: OBS'te 600x800 önerilir */
-  #kart { position:relative; overflow:hidden; margin:2vw; background:var(--kart); border-radius:4vw; padding:4vw 5vw 3vw;
-    border:.4vw solid rgba(255,255,255,.06); box-shadow:0 2vw 6vw rgba(0,0,0,.4); transition:border-color .3s, box-shadow .3s; }
-  #kart.kazandi { border-color:var(--yesil); box-shadow:0 0 6vw rgba(83,252,24,.35); }
+  #kart { position:relative; overflow:hidden; width:96rem; margin:2rem auto; background:var(--kart); border-radius:4rem; padding:4rem 5rem 3rem;
+    border:.4rem solid rgba(255,255,255,.06); box-shadow:0 2rem 6rem rgba(0,0,0,.4); transition:border-color .3s, box-shadow .3s; }
+  #kart.kazandi { border-color:var(--yesil); box-shadow:0 0 6rem rgba(83,252,24,.35); }
 
-  header { display:flex; align-items:center; justify-content:space-between; gap:3vw; }
-  .logo { font-weight:900; font-size:6.4vw; letter-spacing:-.03em; line-height:1; }
+  header { display:flex; align-items:center; justify-content:space-between; gap:3rem; }
+  .logo { font-weight:900; font-size:6.4rem; letter-spacing:-.03em; line-height:1; }
   .logo span { color:var(--yesil); }
-  .cip { background:var(--zemin); color:#fff; font-weight:700; font-size:3.4vw; padding:1.4vw 3vw; border-radius:10vw; white-space:nowrap; }
+  .cip { background:var(--zemin); color:#fff; font-weight:700; font-size:3.4rem; padding:1.4rem 3rem; border-radius:10rem; white-space:nowrap; }
 
-  #kelime { display:flex; flex-wrap:wrap; justify-content:center; gap:3.5vw; margin:4vw 0 3vw; }
-  .soz { display:flex; gap:1.4vw; }
-  .harf { width:var(--k,8.5vw); aspect-ratio:4/5; border-radius:1.6vw; background:var(--zemin);
-    display:grid; place-items:center; font-weight:900; font-size:calc(var(--k,8.5vw) * .62);
-    border-bottom:.8vw solid #1b2025; transition:background .3s, color .3s, transform .3s; }
+  #kelime { display:flex; flex-wrap:wrap; justify-content:center; gap:3.5rem; margin:4rem 0 3rem; }
+  .soz { display:flex; gap:1.4rem; }
+  .harf { width:var(--k,8.5rem); aspect-ratio:4/5; border-radius:1.6rem; background:var(--zemin);
+    display:grid; place-items:center; font-weight:900; font-size:calc(var(--k,8.5rem) * .62);
+    border-bottom:.8rem solid #1b2025; transition:background .3s, color .3s, transform .3s; }
   .harf.acik { background:#fff; color:#111; animation:cevir .35s ease-out; }
   .kazandi .harf { background:var(--yesil); color:#000; }
   .bilinemedi .harf { background:#3a4148; color:#fff; }
   @keyframes cevir { from { transform:rotateY(90deg); } to { transform:rotateY(0); } }
 
-  .ilerleme { height:1.4vw; background:var(--zemin); border-radius:2vw; overflow:hidden; }
+  .ilerleme { height:1.4rem; background:var(--zemin); border-radius:2rem; overflow:hidden; }
   .ilerleme i { display:block; height:100%; width:0; background:var(--soluk); }
-  #bilgi { display:flex; justify-content:space-between; align-items:baseline; margin-top:2.4vw; font-size:3.6vw; color:var(--soluk); gap:2vw; }
+  #bilgi { display:flex; justify-content:space-between; align-items:baseline; margin-top:2.4rem; font-size:3.6rem; color:var(--soluk); gap:2rem; }
   #bilgi b { color:#fff; }
-  #duyuru { min-height:9vw; margin-top:3vw; text-align:center; font-size:4.6vw; font-weight:800; display:grid; place-items:center; }
+  #duyuru { min-height:9rem; margin-top:3rem; text-align:center; font-size:4.6rem; font-weight:800; display:grid; place-items:center; }
   #duyuru:empty { display:none; }
   #duyuru .ad { color:var(--yesil); }
   /* Bilen kişinin büyük duyurusu */
   .kazandi #tahminler { display:none; }
   #duyuru .kazanan { text-align:center; line-height:1.1; max-width:100%; }
-  #duyuru .kazanan .ust { font-size:3.6vw; color:var(--soluk); letter-spacing:.18em; font-weight:800; }
-  #duyuru .kazanan .nick { font-size:11vw; font-weight:900; color:var(--yesil); max-width:82vw; margin:.6vw auto 0;
-    overflow-wrap:anywhere; filter:drop-shadow(0 0 2.4vw currentColor); }
-  #duyuru .kazanan .alt { font-size:4vw; font-weight:700; margin-top:1.2vw; }
+  #duyuru .kazanan .ust { font-size:3.6rem; color:var(--soluk); letter-spacing:.18em; font-weight:800; }
+  #duyuru .kazanan .nick { font-size:11rem; font-weight:900; color:var(--yesil); max-width:82rem; margin:.6rem auto 0;
+    overflow-wrap:anywhere; filter:drop-shadow(0 0 2.4rem currentColor); }
+  #duyuru .kazanan .alt { font-size:4rem; font-weight:700; margin-top:1.2rem; }
   #duyuru .kazanan .alt b { color:var(--yesil); }
-  .konfeti { position:absolute; top:-3vw; width:1.6vw; height:2.6vw; border-radius:.4vw; pointer-events:none;
+  .konfeti { position:absolute; top:-3rem; width:1.6rem; height:2.6rem; border-radius:.4rem; pointer-events:none;
     animation:dus var(--sure,1.8s) cubic-bezier(.3,.6,.6,1) forwards; }
-  @keyframes dus { to { transform:translate(var(--x,0), 150vw) rotate(var(--r,540deg)); opacity:.2; } }
+  @keyframes dus { to { transform:translate(var(--x,0), 150rem) rotate(var(--r,540deg)); opacity:.2; } }
   #duyuru.pop { animation:pop .5s ease-out; }
   @keyframes pop { 0% { transform:scale(.6); opacity:0; } 70% { transform:scale(1.08); } 100% { transform:scale(1); opacity:1; } }
 
-  #tahminler { list-style:none; display:flex; flex-direction:column; gap:1.2vw; min-height:20vw; margin-top:2vw; }
-  #tahminler li { display:flex; justify-content:space-between; font-size:3.4vw; background:rgba(255,255,255,.04);
-    padding:1.4vw 2.4vw; border-radius:1.6vw; animation:gir .25s ease-out; }
+  #tahminler { list-style:none; display:flex; flex-direction:column; gap:1.2rem; min-height:20rem; margin-top:2rem; }
+  #tahminler li { display:flex; justify-content:space-between; font-size:3.4rem; background:rgba(255,255,255,.04);
+    padding:1.4rem 2.4rem; border-radius:1.6rem; animation:gir .25s ease-out; }
   #tahminler li .k { color:var(--soluk); max-width:45%; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
   #tahminler li .t { font-weight:700; }
   #tahminler li.yakin { background:rgba(255,176,32,.14); }
   #tahminler li.yakin .t::after { content:"  çok yakın!"; color:var(--turuncu); font-weight:800; }
-  @keyframes gir { from { transform:translateY(-1vw); opacity:0; } to { transform:none; opacity:1; } }
+  @keyframes gir { from { transform:translateY(-1rem); opacity:0; } to { transform:none; opacity:1; } }
 
-  h3 { font-size:3.4vw; color:var(--soluk); text-transform:uppercase; letter-spacing:.1em; margin:3vw 0 1.2vw; }
-  #skorlar { list-style:none; display:flex; flex-direction:column; gap:.8vw; }
-  #skorlar li { display:grid; grid-template-columns:7vw 1fr auto; align-items:center; font-size:3.6vw; padding:.8vw 2vw; border-radius:1.6vw; }
+  h3 { font-size:3.4rem; color:var(--soluk); text-transform:uppercase; letter-spacing:.1em; margin:3rem 0 1.2rem; }
+  #skorlar { list-style:none; display:flex; flex-direction:column; gap:.8rem; }
+  #skorlar li { display:grid; grid-template-columns:7rem 1fr auto; align-items:center; font-size:3.6rem; padding:.8rem 2rem; border-radius:1.6rem; }
   #skorlar li:nth-child(1) { background:rgba(83,252,24,.12); }
   #skorlar li .s { color:var(--soluk); font-weight:800; }
   #skorlar li:nth-child(1) .s { color:var(--yesil); }
@@ -69,12 +72,12 @@
   #skorlar li .p { font-weight:900; font-variant-numeric:tabular-nums; }
   #skorlar li.yeni { animation:parla 1.2s ease-out; }
   @keyframes parla { 0% { background:rgba(83,252,24,.5); } 100% { } }
-  #skorlar .bos { color:var(--soluk); font-size:3.4vw; padding:1vw 2vw; }
+  #skorlar .bos { color:var(--soluk); font-size:3.4rem; padding:1rem 2rem; }
 
-  #durum { margin-top:2vw; font-size:2.6vw; color:var(--soluk); display:flex; align-items:center; gap:1.4vw; }
-  #durum i { width:1.8vw; height:1.8vw; border-radius:50%; background:#c33; display:inline-block; }
+  #durum { margin-top:2rem; font-size:2.6rem; color:var(--soluk); display:flex; align-items:center; gap:1.4rem; }
+  #durum i { width:1.8rem; height:1.8rem; border-radius:50%; background:#c33; display:inline-block; }
   #durum.bagli i { background:var(--yesil); }
-  #durum .test { background:#c90; color:#000; font-weight:800; padding:.2vw 1.4vw; border-radius:.8vw; margin-left:auto; display:none; }
+  #durum .test { background:#c90; color:#000; font-weight:800; padding:.2rem 1.4rem; border-radius:.8rem; margin-left:auto; display:none; }
 </style>
 </head>
 <body>
@@ -168,7 +171,7 @@
     // Tüm kelimeler tek satıra sığsın: kutu genişliğini toplam harf sayısına göre ayarla
     const sozler = sec.w.split(/\s+/), harfSayisi = sozler.join("").length;
     const k = (84 - (harfSayisi - sozler.length) * 1.4 - (sozler.length - 1) * 3.5) / harfSayisi;
-    kel.style.setProperty("--k", Math.min(8.5, k) + "vw");
+    kel.style.setProperty("--k", Math.min(8.5, k) + "rem");
     let soz = null;
     harfler.forEach((h, i) => {
       if (h === " ") { soz = null; tur.kutular.push(null); return; }
@@ -217,7 +220,7 @@
       c.className = "konfeti";
       c.style.left = Math.random() * 100 + "%";
       c.style.background = renkler[i % renkler.length];
-      c.style.setProperty("--x", (Math.random() * 30 - 15) + "vw");
+      c.style.setProperty("--x", (Math.random() * 30 - 15) + "rem");
       c.style.setProperty("--r", (Math.random() * 900 - 450) + "deg");
       c.style.setProperty("--sure", (1.4 + Math.random() * 1.2) + "s");
       c.style.animationDelay = Math.random() * .3 + "s";
@@ -244,7 +247,7 @@
       const n = d.querySelector(".nick");
       n.textContent = kazanan;
       if (renk && /^#[0-9a-f]{3,8}$/i.test(renk)) n.style.color = renk;
-      if (kazanan.length > 12) n.style.fontSize = Math.max(6, 11 - (kazanan.length - 12) * 0.45) + "vw";
+      if (kazanan.length > 12) n.style.fontSize = Math.max(6, 11 - (kazanan.length - 12) * 0.45) + "rem";
       konfeti(renk);
     } else {
       $("#kart").classList.add("bilinemedi");
