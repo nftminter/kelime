@@ -182,7 +182,7 @@
 
   // ---------- Skorlar (bu bilgisayarda saklanır; ?sifirla=1 ile temizlenir) ----------
   // Test modunun sahte puanları gerçek skor tablosuna karışmasın diye ayrı yerde tutulur
-  const ANAHTAR = TEST ? "kelimeAvi.skor.test" : "kelimeAvi.skor.v1";
+  const ANAHTAR = TEST ? "kelimeAvi.skor.test" : (A.skorAnahtari || "kelimeAvi.skor.v1");
   let skor = {};
   try { if (q.has("sifirla")) localStorage.removeItem(ANAHTAR); skor = JSON.parse(localStorage.getItem(ANAHTAR) || "{}"); } catch (e) { skor = {}; }
   const skorKaydet = () => { try { localStorage.setItem(ANAHTAR, JSON.stringify(skor)); } catch (e) {} };
@@ -204,9 +204,26 @@
 
   // ---------- Kelime destesi (tekrar etmeden karışık sırayla) ----------
   const tum = A.kategoriler.flatMap(k => (k.kelimeler || []).map(w => ({ kat: k.ad, w: w.trim() }))).filter(x => x.w);
-  let deste = [];
+  // Kullanılan kelimeler bu bilgisayarda saklanır: sayfa/OBS yenilense de liste bitene kadar hiçbir kelime tekrar etmez.
+  const KULLANILAN = ANAHTAR + ".kullanilan";
+  let kullanilan = [];
+  try { kullanilan = JSON.parse(localStorage.getItem(KULLANILAN) || "[]"); } catch (e) { kullanilan = []; }
   const karistir = a => { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
-  function siradaki() { if (!deste.length) deste = karistir(tum.slice()); return deste.pop(); }
+  function siradaki() {
+    let kalan = tum.filter(x => !kullanilan.includes(x.w));
+    if (!kalan.length) { // hepsi kullanıldı: listeyi baştan başlat, ama son kelime hemen tekrar gelmesin
+      const son = kullanilan[kullanilan.length - 1];
+      kullanilan = [];
+      kalan = tum.filter(x => x.w !== son);
+      if (!kalan.length) kalan = tum.slice();
+    }
+    const sec = karistir(kalan)[0];
+    if (sec) {
+      kullanilan.push(sec.w);
+      try { localStorage.setItem(KULLANILAN, JSON.stringify(kullanilan)); } catch (e) {}
+    }
+    return sec;
+  }
 
   // ---------- Tur ----------
   let tur = null, zaman = null;

@@ -41,5 +41,12 @@ window.OYUN_AYAR = {
       "Garson", "Kurye", "Dalgıç"] },
     { ad: "Yayın", kelimeler: ["Takipçi", "Moderatör", "Powerbank", "Kamera", "Bağış", "Abone", "Mikrofon",
       "Selfie çubuğu", "Bağlantı"] },
+    { ad: "Teknoloji", kelimeler: ["Bilgisayar", "Klavye", "Kulaklık", "Hoparlör", "Tablet", "Akıllı saat", "Robot",
+      "Drone", "Yapay zeka", "İşlemci", "Ekran kartı", "Anakart", "Modem", "Bluetooth", "Uygulama", "Yazılım",
+      "Şifre", "Oyun konsolu", "Joystick", "Projeksiyon", "Elektrikli araba", "Sanal gerçeklik", "Bulut", "Emoji",
+      "Hashtag", "Algoritma", "Siber güvenlik", "Şarj kablosu", "Monitör", "Web sitesi"] },
   ],
+
+  // Skorların ve kullanılan kelimelerin bu bilgisayarda saklandığı ad. Her yayıncının kopyasında farklı olmalı.
+  skorAnahtari: "kelimeAvi.skor.v1",
 };
