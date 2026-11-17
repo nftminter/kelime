@@ -13,6 +13,12 @@ window.OYUN_AYAR = {
   // En fazla kaç puan (hiç harf açılmadan bilen alır). Her açılan harf 1 puan düşürür, en az 2.
   enYuksekPuan: 10,
 
+  // Bu puana ilk ulaşan ŞAMPİYON olur, skorlar sıfırlanır ve yeni oyun başlar.
+  hedefPuan: 50,
+
+  // Şampiyon ekranı kaç saniye kalsın
+  sampiyonSuresi: 15,
+
   // Kelimeler. İstediğin kategoriyi ekle/sil. Türkçe karakter şart değil;
   // chat "kokorec" yazsa da "KOKOREÇ" sayılır.
   kategoriler: [
